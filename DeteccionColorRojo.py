@@ -17,7 +17,10 @@ while (captura.isOpened()):
         maskRed2 = cv2.inRange(frameHSV, redBajo2, redAlto2)
         maskRed = cv2.add(maskRed1,maskRed2)
 
-        cv2.imshow('Mascara de red', maskRed)
+        maskRedvis = cv2.bitwise_and(imagen, imagen, mask = maskRed)
+        cv2.imshow('Mascara de red vis', maskRedvis) #muestra la mascara de red en su color original
+
+        cv2.imshow('Mascara de red', maskRed) #Muestra la mascara de red en blanco 
         cv2.imshow('video', imagen)
         if cv2.waitKey(1) & 0xFF == ord('s'): #Con esto sabemos que es una maquina de 64 bits
             break
